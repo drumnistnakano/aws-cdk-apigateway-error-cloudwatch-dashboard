@@ -16,8 +16,9 @@ export class CloudWatchStack extends cdk.Stack {
 
         const single4XXWidget = new SingleValueWidget({
             title: 'APIGW 4XX Error Count',
-            height: 6,
+            height: 4,
             width: 12,
+            setPeriodToTimeRange: true,
             metrics: [
                 new Metric({
                     namespace: 'AWS/ApiGateway',
@@ -33,8 +34,9 @@ export class CloudWatchStack extends cdk.Stack {
 
         const single5XXWidget = new SingleValueWidget({
             title: 'APIGW 5XX Error Count',
-            height: 6,
+            height: 4,
             width: 12,
+            setPeriodToTimeRange: true,
             metrics: [
                 new Metric({
                     namespace: 'AWS/ApiGateway',
