@@ -83,7 +83,7 @@ export class CloudWatchStack extends cdk.Stack {
         })
 
         new cloudwatch.Dashboard(this, 'APIDashboard', {
-            dashboardName: 'APIDashBoard',
+            dashboardName: 'API DashBoard',
             periodOverride: cloudwatch.PeriodOverride.AUTO,
             widgets: [
                 [single4XXWidget, single5XXWidget],
