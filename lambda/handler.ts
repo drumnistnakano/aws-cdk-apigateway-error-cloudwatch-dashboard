@@ -15,6 +15,6 @@ exports.handler = async (
     return {
         statusCode: status,
         headers: { 'Content-Type': 'text/plain' },
-        body: `Error ${event.path}\n`,
+        body: `Error: ${event.path} StatusCode: ${status}\n`,
     }
 }
