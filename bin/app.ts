@@ -8,6 +8,6 @@ const app = new cdk.App()
 
 const apiStack = new ApiStack(app, 'ApiStack')
 
-const cloudwatchStack = new CloudWatchStack(app, 'CloudWachStack')
+const cloudwatchStack = new CloudWatchStack(app, 'CloudWatchStack')
 
 cloudwatchStack.addDependency(apiStack)
