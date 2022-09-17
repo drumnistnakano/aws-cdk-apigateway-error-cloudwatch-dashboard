@@ -16,3 +16,9 @@ npm run build
 npm run test
 cdk deploy --all
 ```
+
+## Reference
+
+DevelopersIO  
+"AWS CDK で API Gateway の 4XX/5XX エラーを表示する CloudWatch Dashboard をつくってみた"
+https://dev.classmethod.jp/articles/aws-cdk-apigateway-4xx-and-5xx-error-cloudwatch-dashboard/
