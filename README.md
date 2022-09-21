@@ -1,14 +1,24 @@
-# Welcome to your CDK TypeScript project
+# aws-cdk-apigateway-error-cloudwatch-dashboard
 
-This is a blank project for CDK development with TypeScript.
+With this project, you can create a CloudWatch Dashboard for API Gateway 4XX/5XX errors in AWS CDK.
 
-The `cdk.json` file tells the CDK Toolkit how to execute your app.
+## Install
 
-## Useful commands
+```
+git clone https://github.com/drumnistnakano/aws-cdk-apigateway-error-cloudwatch-dashboard.git
+npm install
+```
 
-* `npm run build`   compile typescript to js
-* `npm run watch`   watch for changes and compile
-* `npm run test`    perform the jest unit tests
-* `cdk deploy`      deploy this stack to your default AWS account/region
-* `cdk diff`        compare deployed stack with current state
-* `cdk synth`       emits the synthesized CloudFormation template
+## Deploy
+
+```
+npm run build
+npm run test
+cdk deploy --all
+```
+
+## Reference
+
+DevelopersIO  
+"AWS CDK で API Gateway の 4XX/5XX エラーを表示する CloudWatch Dashboard をつくってみた"
+https://dev.classmethod.jp/articles/aws-cdk-apigateway-4xx-and-5xx-error-cloudwatch-dashboard/
