@@ -9,7 +9,7 @@ exports.handler = async (
     console.log(JSON.stringify(event, undefined, 2))
 
     // 擬似的に毎回ランダムなステータスを返す
-    const statusArray: Array<number> = [400, 500]
+    const statusArray: Array<number> = [200, 400, 500]
     const status = statusArray[Math.floor(Math.random() * statusArray.length)]
 
     return {

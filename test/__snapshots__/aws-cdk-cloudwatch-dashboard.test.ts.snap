@@ -1,362 +1,5 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`APIStack Test 1`] = `
-{
-  "Outputs": {
-    "apierrorendpointEndpointE61679F4": {
-      "Value": {
-        "Fn::Join": [
-          "",
-          [
-            "https://",
-            {
-              "Ref": "apierrorendpoint0439D24A",
-            },
-            ".execute-api.",
-            {
-              "Ref": "AWS::Region",
-            },
-            ".",
-            {
-              "Ref": "AWS::URLSuffix",
-            },
-            "/",
-            {
-              "Ref": "apierrorendpointDeploymentStagedev83BB879A",
-            },
-            "/",
-          ],
-        ],
-      },
-    },
-    "apigatewayNameOutPut": {
-      "Export": {
-        "Name": "ApiName",
-      },
-      "Value": "api_error_endpoint",
-    },
-    "apigatewayStageNameOutPut": {
-      "Export": {
-        "Name": "StageName",
-      },
-      "Value": {
-        "Ref": "apierrorendpointDeploymentStagedev83BB879A",
-      },
-    },
-  },
-  "Parameters": {
-    "BootstrapVersion": {
-      "Default": "/cdk-bootstrap/hnb659fds/version",
-      "Description": "Version of the CDK Bootstrap resources in this environment, automatically retrieved from SSM Parameter Store. [cdk:skip]",
-      "Type": "AWS::SSM::Parameter::Value<String>",
-    },
-  },
-  "Resources": {
-    "ErrorHandler4C8EBDAE": {
-      "DependsOn": [
-        "ErrorHandlerServiceRoleA9213568",
-      ],
-      "Properties": {
-        "Code": {
-          "S3Bucket": {
-            "Fn::Sub": "cdk-hnb659fds-assets-\${AWS::AccountId}-\${AWS::Region}",
-          },
-          "S3Key": "9d69104c808d2f8855efacf1edd9e12457f1a098b7bee7b77685398efeb914d7.zip",
-        },
-        "Environment": {
-          "Variables": {
-            "AWS_NODEJS_CONNECTION_REUSE_ENABLED": "1",
-          },
-        },
-        "Handler": "index.handler",
-        "Role": {
-          "Fn::GetAtt": [
-            "ErrorHandlerServiceRoleA9213568",
-            "Arn",
-          ],
-        },
-        "Runtime": "nodejs16.x",
-      },
-      "Type": "AWS::Lambda::Function",
-    },
-    "ErrorHandlerServiceRoleA9213568": {
-      "Properties": {
-        "AssumeRolePolicyDocument": {
-          "Statement": [
-            {
-              "Action": "sts:AssumeRole",
-              "Effect": "Allow",
-              "Principal": {
-                "Service": "lambda.amazonaws.com",
-              },
-            },
-          ],
-          "Version": "2012-10-17",
-        },
-        "ManagedPolicyArns": [
-          {
-            "Fn::Join": [
-              "",
-              [
-                "arn:",
-                {
-                  "Ref": "AWS::Partition",
-                },
-                ":iam::aws:policy/service-role/AWSLambdaBasicExecutionRole",
-              ],
-            ],
-          },
-        ],
-      },
-      "Type": "AWS::IAM::Role",
-    },
-    "apierrorendpoint0439D24A": {
-      "Properties": {
-        "Name": "api_error_endpoint",
-      },
-      "Type": "AWS::ApiGateway::RestApi",
-    },
-    "apierrorendpointAccountB8A5B651": {
-      "DeletionPolicy": "Retain",
-      "DependsOn": [
-        "apierrorendpoint0439D24A",
-      ],
-      "Properties": {
-        "CloudWatchRoleArn": {
-          "Fn::GetAtt": [
-            "apierrorendpointCloudWatchRole7DFEF26F",
-            "Arn",
-          ],
-        },
-      },
-      "Type": "AWS::ApiGateway::Account",
-      "UpdateReplacePolicy": "Retain",
-    },
-    "apierrorendpointCloudWatchRole7DFEF26F": {
-      "DeletionPolicy": "Retain",
-      "Properties": {
-        "AssumeRolePolicyDocument": {
-          "Statement": [
-            {
-              "Action": "sts:AssumeRole",
-              "Effect": "Allow",
-              "Principal": {
-                "Service": "apigateway.amazonaws.com",
-              },
-            },
-          ],
-          "Version": "2012-10-17",
-        },
-        "ManagedPolicyArns": [
-          {
-            "Fn::Join": [
-              "",
-              [
-                "arn:",
-                {
-                  "Ref": "AWS::Partition",
-                },
-                ":iam::aws:policy/service-role/AmazonAPIGatewayPushToCloudWatchLogs",
-              ],
-            ],
-          },
-        ],
-      },
-      "Type": "AWS::IAM::Role",
-      "UpdateReplacePolicy": "Retain",
-    },
-    "apierrorendpointDeploymentE8AE706420090d03c848a1f9e656b3fbb240aefd": {
-      "DependsOn": [
-        "apierrorendpointtextGETE80EF3A1",
-        "apierrorendpointtextE1658854",
-      ],
-      "Properties": {
-        "Description": "Automatically created by the RestApi construct",
-        "RestApiId": {
-          "Ref": "apierrorendpoint0439D24A",
-        },
-      },
-      "Type": "AWS::ApiGateway::Deployment",
-    },
-    "apierrorendpointDeploymentStagedev83BB879A": {
-      "DependsOn": [
-        "apierrorendpointAccountB8A5B651",
-      ],
-      "Properties": {
-        "DeploymentId": {
-          "Ref": "apierrorendpointDeploymentE8AE706420090d03c848a1f9e656b3fbb240aefd",
-        },
-        "RestApiId": {
-          "Ref": "apierrorendpoint0439D24A",
-        },
-        "StageName": "dev",
-      },
-      "Type": "AWS::ApiGateway::Stage",
-    },
-    "apierrorendpointtextE1658854": {
-      "Properties": {
-        "ParentId": {
-          "Fn::GetAtt": [
-            "apierrorendpoint0439D24A",
-            "RootResourceId",
-          ],
-        },
-        "PathPart": "text",
-        "RestApiId": {
-          "Ref": "apierrorendpoint0439D24A",
-        },
-      },
-      "Type": "AWS::ApiGateway::Resource",
-    },
-    "apierrorendpointtextGETApiPermissionApiStackapierrorendpoint652B705EGETtext9A8BE314": {
-      "Properties": {
-        "Action": "lambda:InvokeFunction",
-        "FunctionName": {
-          "Fn::GetAtt": [
-            "ErrorHandler4C8EBDAE",
-            "Arn",
-          ],
-        },
-        "Principal": "apigateway.amazonaws.com",
-        "SourceArn": {
-          "Fn::Join": [
-            "",
-            [
-              "arn:",
-              {
-                "Ref": "AWS::Partition",
-              },
-              ":execute-api:",
-              {
-                "Ref": "AWS::Region",
-              },
-              ":",
-              {
-                "Ref": "AWS::AccountId",
-              },
-              ":",
-              {
-                "Ref": "apierrorendpoint0439D24A",
-              },
-              "/",
-              {
-                "Ref": "apierrorendpointDeploymentStagedev83BB879A",
-              },
-              "/GET/text",
-            ],
-          ],
-        },
-      },
-      "Type": "AWS::Lambda::Permission",
-    },
-    "apierrorendpointtextGETApiPermissionTestApiStackapierrorendpoint652B705EGETtext57BEEFC5": {
-      "Properties": {
-        "Action": "lambda:InvokeFunction",
-        "FunctionName": {
-          "Fn::GetAtt": [
-            "ErrorHandler4C8EBDAE",
-            "Arn",
-          ],
-        },
-        "Principal": "apigateway.amazonaws.com",
-        "SourceArn": {
-          "Fn::Join": [
-            "",
-            [
-              "arn:",
-              {
-                "Ref": "AWS::Partition",
-              },
-              ":execute-api:",
-              {
-                "Ref": "AWS::Region",
-              },
-              ":",
-              {
-                "Ref": "AWS::AccountId",
-              },
-              ":",
-              {
-                "Ref": "apierrorendpoint0439D24A",
-              },
-              "/test-invoke-stage/GET/text",
-            ],
-          ],
-        },
-      },
-      "Type": "AWS::Lambda::Permission",
-    },
-    "apierrorendpointtextGETE80EF3A1": {
-      "Properties": {
-        "AuthorizationType": "NONE",
-        "HttpMethod": "GET",
-        "Integration": {
-          "IntegrationHttpMethod": "POST",
-          "Type": "AWS_PROXY",
-          "Uri": {
-            "Fn::Join": [
-              "",
-              [
-                "arn:",
-                {
-                  "Ref": "AWS::Partition",
-                },
-                ":apigateway:",
-                {
-                  "Ref": "AWS::Region",
-                },
-                ":lambda:path/2015-03-31/functions/",
-                {
-                  "Fn::GetAtt": [
-                    "ErrorHandler4C8EBDAE",
-                    "Arn",
-                  ],
-                },
-                "/invocations",
-              ],
-            ],
-          },
-        },
-        "ResourceId": {
-          "Ref": "apierrorendpointtextE1658854",
-        },
-        "RestApiId": {
-          "Ref": "apierrorendpoint0439D24A",
-        },
-      },
-      "Type": "AWS::ApiGateway::Method",
-    },
-  },
-  "Rules": {
-    "CheckBootstrapVersion": {
-      "Assertions": [
-        {
-          "Assert": {
-            "Fn::Not": [
-              {
-                "Fn::Contains": [
-                  [
-                    "1",
-                    "2",
-                    "3",
-                    "4",
-                    "5",
-                  ],
-                  {
-                    "Ref": "BootstrapVersion",
-                  },
-                ],
-              },
-            ],
-          },
-          "AssertDescription": "CDK bootstrap stack version 6 required. Please run 'cdk bootstrap' with a recent version of the CDK CLI.",
-        },
-      ],
-    },
-  },
-}
-`;
-
 exports[`CloudWatchStack Snapshot Test 1`] = `
 {
   "Parameters": {
@@ -373,7 +16,19 @@ exports[`CloudWatchStack Snapshot Test 1`] = `
           "Fn::Join": [
             "",
             [
-              "{"periodOverride":"auto","widgets":[{"type":"metric","width":12,"height":4,"x":0,"y":0,"properties":{"view":"singleValue","title":"APIGW 4XX Error Count","region":"",
+              "{"periodOverride":"auto","widgets":[{"type":"metric","width":24,"height":4,"x":0,"y":0,"properties":{"view":"singleValue","title":"APIGW Request Count","region":"",
+              {
+                "Ref": "AWS::Region",
+              },
+              "","metrics":[["AWS/ApiGateway","Count","ApiName","",
+              {
+                "Fn::ImportValue": "ApiName",
+              },
+              "","Stage","",
+              {
+                "Fn::ImportValue": "StageName",
+              },
+              "",{"stat":"Sum"}]],"setPeriodToTimeRange":true}},{"type":"metric","width":12,"height":4,"x":0,"y":4,"properties":{"view":"singleValue","title":"APIGW 4XX Error Count","region":"",
               {
                 "Ref": "AWS::Region",
               },
@@ -385,7 +40,7 @@ exports[`CloudWatchStack Snapshot Test 1`] = `
               {
                 "Fn::ImportValue": "StageName",
               },
-              "",{"stat":"Sum"}]],"setPeriodToTimeRange":true}},{"type":"metric","width":12,"height":4,"x":12,"y":0,"properties":{"view":"singleValue","title":"APIGW 5XX Error Count","region":"",
+              "",{"stat":"Sum"}]],"setPeriodToTimeRange":true}},{"type":"metric","width":12,"height":4,"x":12,"y":4,"properties":{"view":"singleValue","title":"APIGW 5XX Error Count","region":"",
               {
                 "Ref": "AWS::Region",
               },
@@ -397,7 +52,47 @@ exports[`CloudWatchStack Snapshot Test 1`] = `
               {
                 "Fn::ImportValue": "StageName",
               },
-              "",{"stat":"Sum"}]],"setPeriodToTimeRange":true}},{"type":"metric","width":24,"height":6,"x":0,"y":4,"properties":{"view":"timeSeries","title":"APIGW 4XX Error","region":"",
+              "",{"stat":"Sum"}]],"setPeriodToTimeRange":true}},{"type":"metric","width":12,"height":4,"x":0,"y":8,"properties":{"view":"singleValue","title":"APIGW 4XX Error Rate","region":"",
+              {
+                "Ref": "AWS::Region",
+              },
+              "","metrics":[[{"label":"4XXエラー発生率(%)","expression":"e1/e2*100"}],["AWS/ApiGateway","4XXError","ApiName","",
+              {
+                "Fn::ImportValue": "ApiName",
+              },
+              "","Stage","",
+              {
+                "Fn::ImportValue": "StageName",
+              },
+              "",{"stat":"Sum","visible":false,"id":"e1"}],["AWS/ApiGateway","Count","ApiName","",
+              {
+                "Fn::ImportValue": "ApiName",
+              },
+              "","Stage","",
+              {
+                "Fn::ImportValue": "StageName",
+              },
+              "",{"stat":"Sum","visible":false,"id":"e2"}]],"setPeriodToTimeRange":true,"singleValueFullPrecision":true}},{"type":"metric","width":12,"height":4,"x":12,"y":8,"properties":{"view":"singleValue","title":"APIGW 5XX Error Rate","region":"",
+              {
+                "Ref": "AWS::Region",
+              },
+              "","metrics":[[{"label":"5XXエラー発生率(%)","expression":"e1/e2*100"}],["AWS/ApiGateway","5XXError","ApiName","",
+              {
+                "Fn::ImportValue": "ApiName",
+              },
+              "","Stage","",
+              {
+                "Fn::ImportValue": "StageName",
+              },
+              "",{"stat":"Sum","visible":false,"id":"e1"}],["AWS/ApiGateway","Count","ApiName","",
+              {
+                "Fn::ImportValue": "ApiName",
+              },
+              "","Stage","",
+              {
+                "Fn::ImportValue": "StageName",
+              },
+              "",{"stat":"Sum","visible":false,"id":"e2"}]],"setPeriodToTimeRange":true,"singleValueFullPrecision":true}},{"type":"metric","width":24,"height":6,"x":0,"y":12,"properties":{"view":"timeSeries","title":"APIGW 4XX Error","region":"",
               {
                 "Ref": "AWS::Region",
               },
@@ -409,110 +104,7 @@ exports[`CloudWatchStack Snapshot Test 1`] = `
               {
                 "Fn::ImportValue": "StageName",
               },
-              "",{"stat":"Sum"}]],"yAxis":{}}},{"type":"metric","width":24,"height":6,"x":0,"y":10,"properties":{"view":"timeSeries","title":"APIGW 5XX Error","region":"",
-              {
-                "Ref": "AWS::Region",
-              },
-              "","metrics":[["AWS/ApiGateway","5XXError","ApiName","",
-              {
-                "Fn::ImportValue": "ApiName",
-              },
-              "","Stage","",
-              {
-                "Fn::ImportValue": "StageName",
-              },
-              "",{"stat":"Sum"}]],"yAxis":{}}}]}",
-            ],
-          ],
-        },
-        "DashboardName": "APIDashBoard",
-      },
-      "Type": "AWS::CloudWatch::Dashboard",
-    },
-  },
-  "Rules": {
-    "CheckBootstrapVersion": {
-      "Assertions": [
-        {
-          "Assert": {
-            "Fn::Not": [
-              {
-                "Fn::Contains": [
-                  [
-                    "1",
-                    "2",
-                    "3",
-                    "4",
-                    "5",
-                  ],
-                  {
-                    "Ref": "BootstrapVersion",
-                  },
-                ],
-              },
-            ],
-          },
-          "AssertDescription": "CDK bootstrap stack version 6 required. Please run 'cdk bootstrap' with a recent version of the CDK CLI.",
-        },
-      ],
-    },
-  },
-}
-`;
-
-exports[`Test 1`] = `
-{
-  "Parameters": {
-    "BootstrapVersion": {
-      "Default": "/cdk-bootstrap/hnb659fds/version",
-      "Description": "Version of the CDK Bootstrap resources in this environment, automatically retrieved from SSM Parameter Store. [cdk:skip]",
-      "Type": "AWS::SSM::Parameter::Value<String>",
-    },
-  },
-  "Resources": {
-    "APIDashboard8F09A84C": {
-      "Properties": {
-        "DashboardBody": {
-          "Fn::Join": [
-            "",
-            [
-              "{"periodOverride":"auto","widgets":[{"type":"metric","width":12,"height":4,"x":0,"y":0,"properties":{"view":"singleValue","title":"APIGW 4XX Error Count","region":"",
-              {
-                "Ref": "AWS::Region",
-              },
-              "","metrics":[["AWS/ApiGateway","4XXError","ApiName","",
-              {
-                "Fn::ImportValue": "ApiName",
-              },
-              "","Stage","",
-              {
-                "Fn::ImportValue": "StageName",
-              },
-              "",{"stat":"Sum"}]],"setPeriodToTimeRange":true}},{"type":"metric","width":12,"height":4,"x":12,"y":0,"properties":{"view":"singleValue","title":"APIGW 5XX Error Count","region":"",
-              {
-                "Ref": "AWS::Region",
-              },
-              "","metrics":[["AWS/ApiGateway","5XXError","ApiName","",
-              {
-                "Fn::ImportValue": "ApiName",
-              },
-              "","Stage","",
-              {
-                "Fn::ImportValue": "StageName",
-              },
-              "",{"stat":"Sum"}]],"setPeriodToTimeRange":true}},{"type":"metric","width":24,"height":6,"x":0,"y":4,"properties":{"view":"timeSeries","title":"APIGW 4XX Error","region":"",
-              {
-                "Ref": "AWS::Region",
-              },
-              "","metrics":[["AWS/ApiGateway","4XXError","ApiName","",
-              {
-                "Fn::ImportValue": "ApiName",
-              },
-              "","Stage","",
-              {
-                "Fn::ImportValue": "StageName",
-              },
-              "",{"stat":"Sum"}]],"yAxis":{}}},{"type":"metric","width":24,"height":6,"x":0,"y":10,"properties":{"view":"timeSeries","title":"APIGW 5XX Error","region":"",
+              "",{"stat":"Sum"}]],"yAxis":{}}},{"type":"metric","width":24,"height":6,"x":0,"y":18,"properties":{"view":"timeSeries","title":"APIGW 5XX Error","region":"",
               {
                 "Ref": "AWS::Region",
               },
