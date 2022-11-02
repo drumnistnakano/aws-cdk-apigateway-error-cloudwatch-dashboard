@@ -20,5 +20,8 @@ cdk deploy --all
 ## Reference
 
 DevelopersIO  
-"AWS CDK で API Gateway の 4XX/5XX エラーを表示する CloudWatch Dashboard をつくってみた"
-https://dev.classmethod.jp/articles/aws-cdk-apigateway-4xx-and-5xx-error-cloudwatch-dashboard/
+- "AWS CDK で API Gateway の 4XX/5XX エラーを表示する CloudWatch Dashboard をつくってみた"　　
+https://dev.classmethod.jp/articles/aws-cdk-apigateway-4xx-and-5xx-error-cloudwatch-dashboard/　　
+
+- "AWS CDKでAPI Gatewayのエラー発生率のCloudWatch Dashboardをつくってみた"  
+https://dev.classmethod.jp/articles/aws-cdk-apigateway-error-rate-cloudwatch-dashboard/　　
